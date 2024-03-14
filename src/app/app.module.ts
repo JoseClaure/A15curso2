@@ -8,6 +8,11 @@ import { AboutComponent } from './about/about.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CoursesComponent } from './courses/courses.component';
+import { CoursesDetailsComponent } from './courses-details/courses-details.component';
+import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
 
 
 const routes: Routes = [
@@ -16,8 +21,22 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'courses',
+    component: CoursesComponent,
+  },
+  { //se puede pasar mas de 1 parametro por ejemplo: 'courses/:courseName/:id'
+    path: 'courses/:courseName',
+    component: CoursesDetailsComponent,
+  },
+  {
     path: 'contact',
     component: ContactComponent,
+    children:[
+      {
+        path: '',
+        component:ContactInfoComponent,
+      },
+    ]
   },
   {
     path:'about',
@@ -40,7 +59,12 @@ const routes: Routes = [
     HomeComponent,
     ContactComponent,
     AboutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CoursesComponent,
+    CoursesDetailsComponent,
+    ContactCreateComponent,
+    ContactDetailComponent,
+    ContactInfoComponent
   ],
   imports: [
     BrowserModule,
